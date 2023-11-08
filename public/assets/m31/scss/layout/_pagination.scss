@@ -1,0 +1,142 @@
+/*------------------------------------*\
+    #PAGINATION
+\*------------------------------------*/
+.pagination {
+    display: block;
+    margin: 0;
+    border-radius: 0;
+
+    li {
+        margin-right: 10px;
+        display: inline-block;
+
+        a,
+        span {
+            background-color: #ffffff;
+            color: $color-heading;
+            font-family: $font-body;
+            font-size: 20px;
+            font-weight: 700;
+            text-transform: uppercase;
+            padding: 0;
+            width: 50px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            border-radius: 3px;
+            display: inline-block;
+            border: 2px solid #eaeaea;
+            transition: 300ms ease-in-out;
+            &:hover {
+                background-color: $color-theme;
+                color: $color-white;
+                border-color: $color-theme;
+            }
+        }
+
+        .current {
+            background-color: $color-theme;
+            color: $color-white;
+            border-color: $color-theme;
+        }
+    }
+}
+
+.pagination-nav {
+    .pagination {
+        display: block;
+        margin: 0;
+        border-radius: 0;
+
+        > a {
+            display: none;
+        }
+
+        .nav-links {
+            a,
+            span {
+                margin: 0 5px;
+                background-color: #f9f9f9;
+                color: $color-heading;
+                font-family: $font-heading;
+                font-size: 14px;
+                font-weight: 700;
+                border: none;
+                text-transform: uppercase;
+                padding: 0;
+                width: 50px;
+                height: 50px;
+                line-height: 50px;
+                text-align: center;
+                border-radius: 0;
+                display: inline-block;
+
+                &:hover {
+                    background-color: $color-theme;
+                    color: $color-white;
+                    border-color: $color-theme;
+                }
+            }
+
+            .current {
+                background-color: $color-theme;
+                color: $color-white;
+                border-color: $color-theme;
+            }
+        }
+    }
+}
+
+.pagination-buttons {
+    .next-page,
+    .prev-page {
+        a {
+            font-family: $font-heading;
+            background-color: $color-theme;
+            color: $color-white;
+            font-size: 16px;
+            font-weight: 700;
+            text-transform: uppercase;
+            width: 170px;
+            height: 50px;
+            line-height: 50px;
+            text-align: center;
+            display: inline-block;
+
+            &:hover {
+                background-color: $color-heading;
+                color: $color-white;
+            }
+        }
+    }
+
+    .next-page {
+        text-align: right;
+    }
+}
+
+.page-link {
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 25px;
+    margin-bottom: 16px;
+    color: $color-body;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+
+    &:hover {
+        background-color: transparent;
+        border: none;
+        color: $color-heading;
+        cursor: auto;
+    }
+
+    a {
+        color: $color-heading;
+
+        &:hover {
+            color: $color-theme;
+        }
+    }
+}

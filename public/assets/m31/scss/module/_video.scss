@@ -1,0 +1,103 @@
+/*------------------------------------*\
+    #Video
+\*------------------------------------*/
+.video {
+    position     : relative;
+    border-radius: 4px;
+
+    @media screen and (min-width:992px) {
+        height: 528px;
+    }
+
+    @media screen and (max-width:991.98px) {
+        height: 400px;
+    }
+
+    .player {
+        position : absolute;
+        top      : 50%;
+        left     : 50%;
+        transform: translate(-50%, -50%);
+        z-index  : 600;
+
+        a {
+            display         : flex;
+            justify-content : center;
+            align-items     : center;
+            width           : 66px;
+            height          : 66px;
+            border-radius   : 50%;
+            background-color: $color-white;
+            color           : $color-theme;
+            transition      : 300ms ease-in-out;
+            cursor          : pointer;
+
+            &::before {
+                content      : '';
+                height       : 100%;
+                width        : 100%;
+                position     : absolute;
+                top          : 0;
+                left         : 0;
+                right        : 0;
+                border       : 3px solid rgba(255, 255, 255, 0.5);
+                border-radius: 100%;
+                transform    : scale(1);
+                opacity      : 1;
+                animation    : pulse 1s cubic-bezier(0, 0.51, 0.45, 1.49) 0s infinite;
+            }
+
+            i {
+                z-index   : 5;
+                color     : $color-theme;
+                font-size : 15px;
+                transition: 300ms ease-in-out;
+            }
+        }
+    }
+
+    &.video-1 {
+        height  : 710px;
+        overflow: visible;
+
+        @media #{$maxTablet} {
+            height: 500px;
+        }
+
+        .player {
+            @media #{$minLarge} {
+                left: 0px;
+            }
+        }
+    }
+
+    &.video-3 {
+        height: auto;
+    }
+
+    &.video-4 {
+        margin-bottom: 47px;
+    }
+}
+
+.mfp-bg {
+    z-index: 1543;
+}
+
+.mfp-wrap {
+    z-index: 1642;
+}
+
+@include keyframes(pulse) {
+    0% {
+        transform: scale(1);
+    }
+
+    100% {
+        transform: scale(1.4);
+        opacity  : 0;
+    }
+}
+
+
+/* Custom, iPhone Retina */

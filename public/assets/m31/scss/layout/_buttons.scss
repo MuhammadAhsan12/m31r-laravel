@@ -1,0 +1,347 @@
+/*------------------------------------*\
+    #BUTTONS
+\*------------------------------------*/
+
+.btn {
+    font-family   : $font-body;
+    position      : relative;
+    z-index       : 2;
+    font-size     : 14px;
+    font-weight   : 700;
+    text-transform: capitalize;
+    text-align    : center;
+    border-radius : 0;
+    padding       : 0;
+    line-height   : 48px;
+    width         : 170px;
+    height        : 50px;
+    letter-spacing: 0.26px;
+    transition    : all 0.3s ease-in-out;
+    border-radius : 2px;
+    border-width  : 2px;
+
+    &.no-shadow {
+        box-shadow: none;
+    }
+
+    &:focus,
+    &.active,
+    &:active {
+        box-shadow: none;
+        outline   : none;
+    }
+
+    i {
+        margin-right: 7px;
+        transition  : all 0.3s ease-in-out;
+    }
+}
+
+/* Button Primary */
+.btn--primary {
+    background-color: $color-theme;
+    color           : $color-white;
+    border-color    : $color-theme;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-heading;
+        border-color    : $color-heading;
+        color           : $color-white;
+    }
+
+    &.btn--inverse {
+
+        &:active,
+        &:focus,
+        &:hover {
+            background-color: $color-white;
+            color           : $color-theme;
+            border-color    : $color-white;
+        }
+    }
+}
+
+/* Button Secondary*/
+.btn--secondary {
+    background-color: $color-heading;
+    color           : $color-white;
+    border-color    : $color-heading;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-theme;
+        color           : $color-white;
+        border-color    : $color-theme;
+    }
+}
+
+/* Button White */
+.btn--white {
+    background-color: $color-white;
+    color           : $color-theme;
+    border-color    : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-theme;
+        color           : $color-white;
+        border-color    : $color-theme;
+    }
+
+    &.btn--inverse {
+        color: $color-heading;
+
+        &:active,
+        &:focus,
+        &:hover {
+            background-color: $color-theme;
+            color           : $color-white;
+            border-color    : $color-theme;
+        }
+    }
+}
+
+/* Button Transparent */
+.btn--transparent {
+    background-color: transparent;
+    color           : $color-white;
+    border-color    : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-theme;
+        color           : $color-white;
+        border-color    : $color-theme;
+    }
+
+    &.btn--inverse {
+
+        &:active,
+        &:focus,
+        &:hover {
+            background-color: $color-white;
+            color           : $color-heading;
+            border-color    : $color-white;
+        }
+    }
+}
+
+/* Buttons Custom */
+.btn--danger {
+    background-color: #dd3333;
+    color           : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-heading;
+        color           : $color-white;
+        border-color    : $color-heading;
+    }
+}
+
+.btn--success {
+    background-color: #81d742;
+    color           : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-heading;
+        color           : $color-white;
+        border-color    : $color-heading;
+    }
+}
+
+.btn--prime {
+    background-color: #1e73be;
+    color           : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-heading;
+        color           : $color-white;
+        border-color    : $color-heading;
+    }
+}
+
+.btn--purble {
+    background-color: #8224e3;
+    color           : $color-white;
+
+    &:active,
+    &:focus,
+    &:hover {
+        background-color: $color-heading;
+        color           : $color-white;
+        border-color    : $color-heading;
+    }
+}
+
+/* Button Fluid */
+.btn--block {
+    width: 100%;
+}
+
+/*Button Auto */
+
+.btn--auto {
+    width  : auto;
+    padding: 0 20px;
+}
+
+/* Button Rounded */
+.btn--rounded {
+    border-radius: 50px;
+}
+
+/* Buttons Shadow */
+.btn-shadow {
+    box-shadow: 0px 9px 30px 0px rgba(40, 40, 40, 0.15);
+}
+
+.btn-shadow-hover {
+
+    &:hover,
+    &:active,
+    &:focus {
+        box-shadow: 0px 9px 30px 0px rgba(40, 40, 40, 0.15);
+    }
+}
+
+/* Button Bordered */
+.btn--bordered {
+    background-color: transparent;
+
+    &.btn--primary {
+        color       : $color-theme;
+        border-color: $color-theme;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color           : $color-white;
+            background-color: $color-theme;
+            border-color    : $color-theme;
+        }
+    }
+
+    &.btn--secondary {
+        color       : $color-heading;
+        border-color: $color-heading;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color           : $color-white;
+            background-color: $color-heading;
+            border-color    : $color-heading;
+        }
+    }
+
+    &.btn--white {
+        color       : $color-white;
+        border-color: $color-white;
+
+        &:active,
+        &:focus,
+        &:hover {
+            color           : $color-theme;
+            background-color: $color-white;
+            border-color    : $color-white;
+        }
+    }
+}
+
+.btn--slide {
+    :last-of-type {
+        margin-left: -6px;
+    }
+}
+
+.btn--slide-wide {
+    width: 270px;
+
+    @media screen and (max-width: 360px) {
+        width: 240px;
+    }
+}
+
+.btn-video {
+    display         : flex;
+    justify-content : center;
+    align-items     : center;
+    width           : 50px;
+    height          : 50px;
+    border-radius   : 50%;
+    background-color: $color-white;
+    color           : $color-theme;
+    transition      : 300ms ease-in-out;
+    cursor          : pointer;
+    position        : relative;
+
+    &::before {
+        content      : '';
+        height       : 100%;
+        width        : 100%;
+        position     : absolute;
+        top          : 0;
+        left         : 0;
+        right        : 0;
+        border       : 3px solid rgba(255, 255, 255, 0.5);
+        border-radius: 100%;
+        transform    : scale(1);
+        opacity      : 1;
+        animation    : pulse 1s cubic-bezier(0, 0.51, 0.45, 1.49) 0s infinite;
+    }
+
+    i {
+        z-index   : 5;
+        color     : $color-heading;
+        font-size : 12px;
+        transition: 300ms ease-in-out;
+    }
+
+    &.btn-video-2 {
+        width : 77px;
+        height: 77px;
+
+        i {
+            font-size: 15px;
+            color    : $color-theme;
+        }
+    }
+}
+
+.btn-transparent {
+    color           : $color-theme;
+    border-color    : $color-theme;
+    background-color: transparent;
+
+    &:active,
+    &:focus,
+    &:hover {
+        color           : $color-white;
+        background-color: $color-heading;
+        border-color    : $color-heading
+    }
+}
+
+/* Buttons Sizes */
+.btn-small {
+    width      : 170px;
+    height     : 41px;
+    line-height: 41px;
+}
+
+.btn-super {
+    width      : 170px;
+    height     : 61px;
+    line-height: 61px;
+}

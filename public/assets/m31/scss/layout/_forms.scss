@@ -1,0 +1,212 @@
+/*------------------------------------*\
+    #FORMS
+\*------------------------------------*/
+form {
+    position: relative;
+}
+
+.form-control {
+    color: $color-body;
+    font-size: 14px;
+    font-weight: 400;
+    height: 50px;
+    line-height: 49px;
+    border-radius: 3px;
+    border       : 3px solid #eaeaea;
+    background: transparent;
+    padding-left: 16px;
+    margin-bottom: 20px;
+    position: relative;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
+    &:focus {
+        background: transparent;
+        border-color: $color-theme;
+        box-shadow: none;
+    }
+
+    &::-webkit-input-placeholder {
+        font-size: 14px;
+        font-family: $font-body;
+        color: $color-body;
+        text-transform: capitalize;
+    }
+
+    &:-moz-placeholder {
+        font-size: 14px;
+        font-family: $font-body;
+        color: $color-body;
+        text-transform: capitalize;
+    }
+
+    &::-moz-placeholder {
+        font-size: 14px;
+        font-family: $font-body;
+        color: $color-body;
+        text-transform: capitalize;
+    }
+
+    &:-ms-input-placeholder {
+        font-size: 14px;
+        font-family: $font-body;
+        color: $color-body;
+        text-transform: capitalize;
+    }
+
+    & + .error {
+        position: absolute;
+        top: -23px;
+        left: 20px;
+        color: red;
+    }
+
+    &.error {
+        border-color: red;
+    }
+}
+
+
+.custom-radio-group{
+    display: flex;
+    @media #{$maxSmall} {
+        flex-wrap: wrap;
+    }
+    .custom-control{
+        min-height: 0;
+        margin-bottom: 14px;
+        .custom-control-input{
+            &:checked{
+                ~ label{
+                    &::after {
+                        background-color: $color-theme;
+                        opacity: 1;
+                        transform: scale(1);
+                    }
+                }
+            }
+        }
+        label{
+            font-size: 13px;
+            font-family: $font-body;
+            font-weight: 400;
+            color: $color-body;
+            margin-bottom: 0;
+            line-height: 1.9;
+            text-transform: capitalize;
+            cursor: pointer;
+            &::before {
+                content: '';
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                left: 0;
+                border-radius: 3px;
+                border: 3px solid #eaeaea;
+                width: 15px;
+                height: 15px;
+            }
+            &::after {
+                content: '';
+                display: inline-block;
+                position: absolute;
+                width: 7px;
+                height: 7px;
+                border-radius: 1px;
+                left: 4px;
+                top: 8px;
+                background-color: transparent;
+                transition: 0.3s ease-in-out;
+                opacity: 0;
+                transform: scale(1)
+            }
+        }
+    }
+}
+textarea.form-control {
+    height: auto;
+}
+
+.form-select {
+    position: relative;
+
+    i {
+        position: absolute;
+        font-size: 19px;
+        font-weight: 400;
+        line-height: 49px;
+        right: 20px;
+        top: 0;
+        z-index: 1;
+        pointer-events: none;
+        cursor: pointer;
+        color: $color-body;
+    }
+
+    select {
+        line-height: 1;
+        color: $color-body;
+        cursor: pointer;
+        appearance: none;
+    }
+}
+
+/* Input Checkbox */
+
+.input-checkbox {
+    margin-bottom: 30px;
+
+    p {
+        display: block;
+        position: relative;
+        font-size: 13px;
+        padding-left: 30px;
+        line-height: 20px;
+        text-align: left;
+        margin-bottom: 0;
+    }
+}
+
+.label-checkbox {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    font-size: 18px;
+    line-height: 18px;
+    z-index: 2;
+
+    input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+
+    .check-indicator {
+        position: absolute;
+        top: 2px;
+        left: 0;
+        height: 17px;
+        width: 17px;
+        background: transparent;
+        border: 1px solid #e1e3e3;
+        border-radius: 2px;
+        &:after {
+            content: "";
+            position: absolute;
+            display: none;
+            left: 4px;
+            top: 1px;
+            width: 6px;
+            height: 12px;
+            border: solid $color-theme;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+    }
+
+    input:checked ~ .check-indicator {
+        background: $color-white;
+        &:after {
+            display: block;
+        }
+    }
+}

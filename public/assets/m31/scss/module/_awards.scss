@@ -1,0 +1,67 @@
+/*------------------------------------*\
+    #Awards
+\*------------------------------------*/
+.awards {
+    padding-top   : 130px;
+    padding-bottom: 80px;
+
+    .award {
+        margin-bottom: 30px;
+
+        &:hover {
+            .award-img {
+                border-color: $color-theme;
+            }
+        }
+
+        .award-img {
+            padding         : 42px 65px;
+            background-color: #f3f3f3;
+            border          : 3px solid #f3f3f3;
+            border-radius   : 4px;
+            transition      : 0.3s ease-in-out;
+            display         : flex;
+            justify-content : center;
+            align-items     : center;
+
+            img {
+                max-width: 100%;
+            }
+        }
+
+        .award-content {
+            padding: 20px 30px 12px;
+
+            @media #{$maxTablet} {
+                text-align: center;
+            }
+
+            .award-title {
+                margin-bottom: 17px;
+
+                a {
+                    font-family   : $font-heading;
+                    font-weight   : 500;
+                    font-size     : 18px;
+                    line-height   : 26px;
+                    color         : $color-heading;
+                    transition    : 0.3s ease-in-out;
+                    text-transform: capitalize;
+
+                    &:hover {
+                        color: $color-theme;
+                    }
+                }
+            }
+
+            .award-desc {
+                font-family  : $font-body;
+                font-weight  : 400;
+                font-size    : 15px;
+                line-height  : 25px;
+                color        : $color-body;
+                margin-bottom: 0;
+            }
+        }
+    }
+}

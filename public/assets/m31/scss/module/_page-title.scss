@@ -1,0 +1,237 @@
+/*------------------------------------*\
+    #PAGE-TTILE
+\*------------------------------------*/
+.page-title {
+    padding: 0;
+
+    .title {
+        padding   : 288px 0 193px 0;
+        text-align: center;
+
+        @media #{$maxTablet} {
+            padding: 188px 0 93px;
+        }
+
+        .title-sub-heading {
+            p {
+                font-family  : $font-body;
+                font-weight  : 700;
+                font-size    : 15px;
+                line-height  : 1;
+                color        : #f9f9f9;
+                margin-bottom: 0;
+            }
+        }
+
+        .title-heading {
+            margin-bottom: 35px;
+
+            h1 {
+                font-family   : $font-heading;
+                color         : $color-white;
+                font-size     : 63px;
+                font-weight   : 500;
+                line-height   : 70px;
+                margin-bottom : 0;
+                text-transform: capitalize;
+
+                @media #{$maxSmall} {
+                    font-size  : 32px;
+                    line-height: 1.2;
+                }
+
+                @media screen and (min-width:992px) and (max-width:1200px) {
+                    font-size: 55px;
+                }
+            }
+        }
+
+        .title-desc {
+            p {
+                color        : #f9f9f9;
+                font-size    : 16px;
+                margin-bottom: 0;
+                font-weight  : 300;
+            }
+        }
+
+        .breadcrumb {
+            font-family    : $font-body;
+            font-size      : 14px;
+            font-weight    : 400;
+            line-height    : 1px;
+            background     : transparent;
+            color          : #f9f9f9;
+            display        : flex;
+            justify-content: center;
+
+            a {
+                font-size  : 14px;
+                font-weight: 400;
+                line-height: 1px;
+                background : transparent;
+                color      : #f9f9f9;
+
+                &:hover {
+                    color: $color-theme;
+                }
+            }
+
+            .active {
+                color: #f9f9f9;
+            }
+
+            .breadcrumb-item+.breadcrumb-item {
+                padding-left: 0;
+
+                &::before {
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 700;
+                    font-size  : 11px;
+                    padding    : 0 10px;
+                    color      : #f9f9f9;
+                    content    : "\f054";
+                }
+            }
+        }
+    }
+
+    &.page-title-1 {
+        .title {
+            padding: 390px 0 233px 0;
+
+            .title-heading {
+                h1 {
+                    font-size: 43px;
+
+                    @media #{$maxSmall} {
+                        font-size  : 32px;
+                        line-height: 1.2;
+                    }
+                }
+            }
+
+            .breadcrumb {
+                margin-bottom: 25px;
+            }
+        }
+    }
+
+    &.page-title-3 {
+        .title {
+            .breadcrumb {
+                @media #{$maxTablet} {
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+
+    &.page-title-4 {
+        .title {
+            padding: 250px 0 153px 0;
+
+            .title-heading {
+                margin-bottom: 24px;
+
+                h1 {
+                    font-size  : 43px;
+                    line-height: 55px;
+
+                    @media #{$maxSmall} {
+                        font-size  : 32px;
+                        line-height: 1.2;
+                    }
+                }
+            }
+
+            .title-sub-heading {
+                margin-bottom: 18px;
+            }
+        }
+    }
+
+    &.page-title-5 {
+        .title {
+            .title-heading {
+                margin-bottom: 34px;
+            }
+        }
+    }
+
+    &.page-title-6 {
+        .title {
+            padding: 248px 0 153px 0;
+        }
+    }
+
+    &.page-title-8 {
+        .title {
+            padding: 270px 0 167px 0;
+
+            .title-heading {
+                margin-bottom: 0;
+                font-size    : 53px;
+                line-height  : 50px;
+            }
+        }
+    }
+
+    &.page-title-10 {
+        .title {
+            padding: 304px 0 190px 0;
+
+            .breadcrumb {
+                margin-bottom: 25px;
+            }
+
+            .title-heading {
+                margin-bottom: 0px;
+
+                h1 {
+                    font-size: 43px;
+
+                    @media #{$maxSmall} {
+                        font-size  : 32px;
+                        line-height: 1.2;
+                    }
+                }
+            }
+        }
+    }
+
+    &.page-title-11 {
+        .title {
+            padding: 200px 0 90px 0;
+
+            .title-heading {
+                h1 {
+                    font-size: 43px;
+
+                    @media #{$maxSmall} {
+                        font-size  : 32px;
+                        line-height: 1.2;
+                    }
+                }
+            }
+
+            .breadcrumb {
+                @media #{$maxTablet} {
+                    line-height: 1.4;
+                }
+
+                margin-bottom: 25px;
+            }
+        }
+    }
+
+    &.page-title-12 {
+        .title {
+            .breadcrumb {
+                @media #{$maxTablet} {
+                    line-height: 1.4;
+                }
+            }
+        }
+    }
+}

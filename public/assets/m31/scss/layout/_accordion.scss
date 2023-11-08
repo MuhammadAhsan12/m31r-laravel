@@ -1,0 +1,208 @@
+/*------------------------------------*\
+    #Accordion
+\*------------------------------------*/
+.accordion {
+    .heading {
+        margin-bottom: 23px;
+
+        .heading-title {
+            font-size    : 24px;
+            line-height  : 29px;
+            font-weight  : 500;
+            font-family  : $font-heading;
+            color        : $color-heading;
+            margin-bottom: 0;
+        }
+    }
+
+    .card,
+    .card:first-of-type,
+    .card:not(:first-of-type):not(:last-of-type) {
+        padding      : 23px 30px 22px;
+        box-shadow   : none;
+        border       : 2px solid #eaeaea;
+        margin-bottom: 30px;
+        border-radius: 4px;
+        transition   : 0.3s ease-in-out;
+
+        .card-heading {
+            padding: 0;
+
+            a {
+                font-family   : $font-heading;
+                font-size     : 16px;
+                color         : #222222;
+                font-weight   : 500;
+                text-transform: capitalize;
+                position      : relative;
+                transition    : 0.3s ease-in-out;
+                display       : block;
+                padding-left  : 0;
+            }
+
+            .card-link {
+                &:after {
+                    /* symbol for "opening" cards */
+                    transition : 0.3s ease-in-out;
+                    position   : absolute;
+                    right      : 0;
+                    top        : 0;
+                    font-family: "Font Awesome 5 Free";
+                    font-weight: 700;
+                    content    : "\f068";
+                    font-size  : 11px;
+                    color      : $color-theme;
+                }
+
+                &.collapsed {
+                    &:after {
+                        /* symbol for "collapsed" cards */
+                        content: "\f067";
+                    }
+                }
+
+            }
+        }
+
+        .card-body {
+            font-family: $font-body;
+            color      : $color-body;
+            padding    : 12px 0 0 0;
+            font-size  : 15px;
+            font-weight: 400;
+            line-height: 24px;
+        }
+
+        &.active-acc {
+            border-color: $color-theme;
+
+            .card-heading {
+                .card-link {
+                    color: $color-theme;
+
+                    &::after {
+                        color: $color-theme;
+                        content: "\f068";
+                    }
+                }
+            }
+        }
+
+        &:hover {
+            border-color: $color-theme;
+
+            .card-heading {
+                a {
+                    color: $color-theme;
+
+                    &::after {
+                        color: $color-theme;
+                    }
+                }
+            }
+        }
+    }
+
+    .card:last-of-type {
+        margin-bottom: 15px;
+    }
+
+    &.accordion-1 {
+        margin-bottom: 65px;
+    }
+
+    &.accordion-2 {
+        margin-bottom: 55px;
+    }
+
+    &.accordion-3 {
+
+        @media screen and (min-width:991px) {
+            padding-top   : 130px;
+            padding-bottom: 70px;
+        }
+
+    }
+
+    &.accordion-4 {
+        max-width       : 330px;
+        padding         : 40px 40px 15px;
+        background-color: $color-white;
+        border-radius   : 4px;
+
+        .panel {
+            font-family     : $font-heading;
+            font-weight     : 500;
+            font-size       : 18px;
+            line-height     : 24px;
+            border-radius   : 4px;
+            color           : $color-white;
+            background-color: $color-theme;
+            height          : 70px;
+            margin-bottom   : 0;
+            display         : flex;
+            justify-content : center;
+            align-items     : center;
+            text-transform  : capitalize;
+        }
+
+        .card,
+        .card:first-of-type,
+        .card:not(:first-of-type):not(:last-of-type) {
+            border       : 0;
+            border-bottom: 2px solid hsl(0, 0%, 92%);
+            padding      : 0;
+            margin-bottom: 0;
+            border-radius: 0;
+
+            &:last-child {
+                border-bottom: 0;
+            }
+
+            .card-heading {
+                padding-top   : 19px;
+                padding-bottom: 18px;
+
+                a {
+                    font-family: $font-body;
+                    font-weight: 700;
+                    font-size  : 17px;
+                    line-height: 24px;
+                    color      : #222222;
+                }
+            }
+
+            .card-body {
+                border-top: 2px solid #eaeaea;
+
+                .info {
+                    margin-bottom : 0;
+                    padding-top   : 11px;
+                    padding-bottom: 17px;
+
+                    li {
+                        margin-bottom: 7px;
+
+                        a {
+                            font-family: $font-body;
+                            font-size  : 14px;
+                            line-height: 20px;
+                            color      : $color-body;
+                            transition : 0.3s ease-in-out;
+                            margin-left: 10px;
+
+                            &:hover {
+                                color: $color-theme;
+                            }
+                        }
+
+                        span {
+                            color    : $color-theme;
+                            font-size: 13px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

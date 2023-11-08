@@ -1,0 +1,50 @@
+/*------------------------------------*\
+    #TopBar
+\*------------------------------------*/
+/* Top-Contact */
+.top-contact {
+	display: flex;
+
+	.contact-infos {
+		display     : flex;
+		align-items : center;
+		margin-right: 30px;
+
+		&:last-child {
+			margin-right: 0;
+		}
+
+		i {
+			color       : $color-theme;
+			font-size   : 17px;
+			margin-right: 15px;
+		}
+
+		span {
+			display       : block;
+			font-size     : 13px;
+			line-height   : 22px;
+			font-weight   : 400;
+			color         : $color-body;
+			margin-bottom : 0;
+			text-transform: capitalize;
+		}
+
+		a,
+		p {
+			font-family   : $font-body;
+			line-height   : 22px;
+			font-size     : 14px;
+			font-weight   : 700;
+			margin-bottom : 0;
+			color         : $color-body;
+			text-transform: capitalize;
+		}
+
+		a {
+			&:hover {
+				color: $color-theme;
+			}
+		}
+	}
+}
