@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/jquery-toast-plugin/jquery.toast.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/css/vertical-layout-light/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/m31r/css/vendor/bootstrap.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{ asset('assets/m31r/css/vendor/bootstrap.min.css') }}"> --}}
     <link rel="shortcut icon" href="{{ asset('assets/m31/images/logos/M31Logo_Icon_White.png') }}" />
 </head>
 

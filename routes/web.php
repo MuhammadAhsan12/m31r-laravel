@@ -94,7 +94,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 //     [AdminController::class, 'index']
 // )->name('admin');
 
-Route::middleware(['auth'])->group(function () {
+// Route::middleware(['auth'])->group(function () {
     Route::group(['middleware' => ['auth', CheckRole::class . ':user']], function () {
         Route::prefix('user')->group(function () {
             Route::get(
@@ -224,4 +224,4 @@ Route::middleware(['auth'])->group(function () {
             [CompaniesController::class, 'deleteCompany']
         )->name('deleteCompany');
     });
-});
+// });
