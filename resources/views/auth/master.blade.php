@@ -6,6 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>M31 Research Admin</title>
+    <link rel="icon" href="{{ asset('assets/m31/images/logo/M31SmallLogo.png') }}" />
     <!-- plugins:css -->
     <link rel="stylesheet"
         href="{{ asset('adminfiles/assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css') }}">

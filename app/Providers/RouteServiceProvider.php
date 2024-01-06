@@ -20,6 +20,7 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/'; // Default home for all users
     public const ADMIN_HOME = '/admin/dashboard'; // Home for users with 'admin' role
     public const USER_HOME = '/user/dashboard'; // Home for users with 'user' role
+    public const USER_STATUS = '/user/Status'; // Home for users with 'user' role
 
     /**
      * Define your route model bindings, pattern filters, and other route configuration.

@@ -9,7 +9,8 @@
     <title>{{ config('name', 'M31 Research Admin') }}</title>
     <link rel="icon" href="{{ asset('assets/m31/images/logo/M31SmallLogo.png') }}" />
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('adminfiles/assets/vendors/iconfonts/mdi/font/css/materialdesignicons.min.css') }}">
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/css/vendor.bundle.base.css') }}">
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/css/vendor.bundle.addons.css') }}">
     <link rel="stylesheet" href="{{ asset('adminfiles/assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
@@ -34,16 +35,16 @@
                     <span class="mdi mdi-menu"></span>
                 </button>
                 <ul class="navbar-nav mr-auto">
-                    <li class="nav-item nav-search d-none d-md-flex" id="navbarSearch">
+                    {{-- <li class="nav-item nav-search d-none d-md-flex" id="navbarSearch">
                         <a class="nav-link d-flex justify-content-center align-items-center" id="navbarSearchButton"
                             href="#">
                             <i class="mdi mdi-magnify mx-0"></i>
                         </a>
                         <input type="text" class="form-control" placeholder="Search..." id="navbarSearchInput">
-                    </li>
+                    </li> --}}
                 </ul>
                 <ul class="navbar-nav navbar-nav-right">
-                    <li class="nav-item dropdown mr-1">
+                    {{-- <li class="nav-item dropdown mr-1">
                         <a class="nav-link count-indicator dropdown-toggle d-flex justify-content-center align-items-center"
                             id="messageDropdown" href="#" data-toggle="dropdown">
                             <i class="mdi mdi-email mx-0"></i>
@@ -53,7 +54,7 @@
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                                    <img src="{{ asset('images/profile.png') }}" alt="image" class="profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow">
                                     <h6 class="preview-subject ellipsis font-weight-normal">David Grey
@@ -65,7 +66,7 @@
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                                    <img src="{{ asset('images/profile.png') }}" alt="image" class="profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow">
                                     <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
@@ -77,7 +78,7 @@
                             </a>
                             <a class="dropdown-item preview-item">
                                 <div class="preview-thumbnail">
-                                    <img src="https://via.placeholder.com/36x36" alt="image" class="profile-pic">
+                                    <img src="{{ asset('images/profile.png') }}" alt="image" class="profile-pic">
                                 </div>
                                 <div class="preview-item-content flex-grow">
                                     <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
@@ -88,7 +89,7 @@
                                 </div>
                             </a>
                         </div>
-                    </li>
+                    </li> --}}
                     <li class="nav-item dropdown mr-4">
                         <a class="nav-link count-indicator dropdown-toggle d-flex align-items-center justify-content-center"
                             id="notificationDropdown" href="#" data-toggle="dropdown">
@@ -141,7 +142,7 @@
                     <li class="nav-item nav-profile dropdown mr-0 mr-sm-2">
                         <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown"
                             id="profileDropdown">
-                            <img src="https://via.placeholder.com/40x40" alt="profile" />
+                            <img src="{{ asset('images/profile.png') }}" alt="profile" />
                             <span class="nav-profile-name">{{ Auth::user()->name }}</span>
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
@@ -269,11 +270,14 @@
     <script src="{{ asset('adminfiles/assets/js/settings.js') }}"></script>
     <script src="{{ asset('adminfiles/assets/js/dashboard.js') }}"></script>
     <script src="{{ asset('adminfiles/assets/js/todolist.js') }}"></script>
-    <script src="{{ asset('adminfiles/assets/js/data-table.js') }}"></script>
+    <!-- <script src="{{ asset('adminfiles/assets/js/data-table.js') }}"></script> -->
     <script src="{{ asset('adminfiles/assets/js/toastDemo.js') }}"></script>
     <script src="{{ asset('adminfiles/assets/js/desktop-notification.js') }}"></script>
     <script src="{{ asset('adminfiles/assets/js/alerts.js') }}"></script>
     <script src="{{ asset('adminfiles/assets/js/avgrund.js') }}"></script>
+    <script src="{{ asset('adminfiles/assets/js/file-upload.js') }}"></script>
+    <script src="{{ asset('adminfiles/assets/js/typeahead.js') }}"></script>
+    <script src="{{ asset('adminfiles/assets/js/select2.js') }}"></script>
     @yield('javascript')
     <!-- End custom js for this page-->
 </body>

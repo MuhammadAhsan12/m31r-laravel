@@ -10,8 +10,15 @@ class CompaniesController extends Controller
 {
     public function listView()
     {
+        // $companies = Companies::all();
+        // return view('admin.companies.companiesList')->with('companyData', $companies);
+        return view('admin.companies.companiesList');
+    }
+
+    public function companyData()
+    {
         $companies = Companies::all();
-        return view('admin.companies.companiesList')->with('companyData', $companies);
+        return $companies;
     }
 
     public function addCompanyView()
@@ -24,9 +31,19 @@ class CompaniesController extends Controller
         return view('admin.companies.addCompany');
     }
 
-    public function view(Companies $company)
+    // public function view(Companies $company)
+    // {
+    //     return view('admin.companies.viewCompany', compact('company'));
+    // }
+
+    public function view($id)
     {
-        return view('admin.companies.viewCompany', compact('company'));
+        $company = Companies::find($id);
+        if ($company) {
+            return response()->json($company, 200);
+        } else {
+            return response()->json(['message' => 'Company not found'], 404);
+        }
     }
 
     public function viewEdit(Companies $company)
@@ -38,13 +55,13 @@ class CompaniesController extends Controller
     {
         $companyData = $request->validate([
             'name' => 'required|string',
-            'website' => 'nullable|url',
-            'phone' => 'nullable|string',
-            'email' => 'nullable|email|unique:companies',
-            'contact_person_name' => 'nullable|string',
-            'contact_person_email' => 'nullable|email',
-            'country_or_registration' => 'nullable|string',
-            'registration_year' => 'nullable|integer',
+            'website' => 'required|url',
+            'phone' => 'required|string',
+            'email' => 'required|email|unique:companies',
+            'contact_person_name' => 'required|string',
+            'contact_person_email' => 'required|email',
+            'country_or_registration' => 'required|string',
+            'registration_year' => 'required|integer',
         ]);
 
         Companies::create($companyData);
@@ -56,13 +73,13 @@ class CompaniesController extends Controller
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
-            'website' => 'nullable|url',
-            'phone' => 'nullable|string',
-            'email' => 'nullable|email|unique:companies,email,' . $company->id,
-            'contact_person_name' => 'nullable|string',
-            'contact_person_email' => 'nullable|email',
-            'country_or_registration' => 'nullable|string',
-            'registration_year' => 'nullable|integer',
+            'website' => 'required|url',
+            'phone' => 'required|string',
+            'email' => 'required|email|unique:companies,email,' . $company->id,
+            'contact_person_name' => 'required|string',
+            'contact_person_email' => 'required|email',
+            'country_or_registration' => 'required|string',
+            'registration_year' => 'required|integer',
         ]);
 
         $company->update($validatedData);

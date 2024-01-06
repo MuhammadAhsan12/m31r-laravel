@@ -11,23 +11,23 @@ class UsersController extends Controller
 {
     public function listView()
     {
+        return view('admin.users.usersList');
+    }
+
+    public function userData()
+    {
         $user = User::all();
-        return view('admin.users.usersList')->with('userData', $user);
+        return $user;
     }
 
-    public function addUserView()
+    public function view($id)
     {
-        return view('admin.users.addUser');
-    }
-
-    public function addUser()
-    {
-        return view('admin.users.addUser');
-    }
-
-    public function view(User $user)
-    {
-        return view('admin.users.viewUser', compact('user'));
+        $user = User::find($id);
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json(['message' => 'user not found'], 404);
+        }
     }
 
     public function viewEdit(User $user)
@@ -41,6 +41,7 @@ class UsersController extends Controller
             'name' => 'required|string',
             'email' => 'required|email|unique:users',
             'role' => 'required|in:user,admin',
+            'status' => 'required|in:active,inactive',
         ]);
         if ($request->has('password')) {
             $userData['password'] = Hash::make($request->input('password'));
@@ -51,26 +52,35 @@ class UsersController extends Controller
         return response()->json(['message' => 'User added successfully', 'user' => $user]);
     }
 
-    public function editUser(Request $request, User $user)
+    public function editUser(Request $request)
     {
         $validatedData = $request->validate([
             'name' => 'required|string',
-            'email' => 'required|email|unique:users,email,' . $user->id,
+            'email' => 'required|email|unique:users,email,' . $request->id,
             'role' => 'required|in:user,admin',
+            'status' => 'required|in:active,inactive',
         ]);
-
-        if ($request->has('password')) {
+        if ($request->input('password') != "") {
             $validatedData['password'] = Hash::make($request->input('password'));
         }
-
-        $user->update($validatedData);
-
-        return response()->json(['message' => 'User updated successfully', 'user' => $user]);
+        $row = User::find($request->id);
+        if ($row) {
+            $row->update($validatedData);
+            return response()->json(['message' => 'User updated successfully']);
+        }
+        else{
+            return response()->json(['message' => 'error occured']);
+        }
     }
 
-    public function deleteUser(User $user)
+    public function deleteUser($id)
     {
-        $user->delete();
-        return response()->json(['message' => 'User deleted successfully']);
+        $user = User::find($id);
+        if ($user) {
+            $user->delete();
+            return response()->json(['message' => 'user deleted successfully'], 200);
+        } else {
+            return response()->json(['message' => 'user not found'], 404);
+        }
     }
 }

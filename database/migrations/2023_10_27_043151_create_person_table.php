@@ -25,6 +25,7 @@ return new class extends Migration
             $table->date('date_of_birth');
             $table->string('education_level');
             $table->enum('role', ['Project Manager', 'Expert', 'Qualitative Interviewer', 'Enumerator']);
+            $table->longText('file');
             $table->timestamps();
         });
     }

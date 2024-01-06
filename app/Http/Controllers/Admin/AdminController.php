@@ -1,6 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
+
+use App\Http\Controllers\Controller;
 
 use Illuminate\Support\Carbon;
 use App\Models\User;
@@ -8,14 +10,8 @@ use App\Models\Persons;
 use App\Models\Companies;
 use Illuminate\Http\Request;
 
-
 class AdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function view()
     {
         $userCount = User::count();

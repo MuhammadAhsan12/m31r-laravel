@@ -34,14 +34,9 @@ class LoginController extends Controller
         if (auth()->user()->role === 'admin') {
             return RouteServiceProvider::ADMIN_HOME;
         } else {
-            return RouteServiceProvider::USER_HOME;
+                return RouteServiceProvider::USER_HOME;
         }
     }
-
-    // public function __construct()
-    // {
-    //     $this->middleware('guest')->except('logout');
-    // }
 
     public function logout(Request $request)
     {

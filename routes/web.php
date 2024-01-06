@@ -5,11 +5,14 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\DownloadsController;
 use App\Http\Controllers\CountryController;
 use App\Http\Controllers\AdminblogController;
-use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Admin\AdminController;
 use App\Http\Middleware\CheckRole;
+use App\Http\Middleware\checkUserStatus;
 use App\Http\Controllers\Users\UsersController;
 use App\Http\Controllers\Persons\PersonsController;
 use App\Http\Controllers\Companies\CompaniesController;
+use App\Http\Controllers\Error\ContactAdminController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,143 +88,180 @@ Route::get(
 
 Route::resource('adminblog', AdminblogController::class);
 
-Auth::routes();
+// Auth::routes();
+$userCount = User::count();
+if ($userCount === 0) {
+    Auth::routes(['register' => true]);
+} else {
+    Auth::routes(['register' => false]);
+}
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get(
-//     '/admin',
-//     [AdminController::class, 'index']
-// )->name('admin');
-
 Route::middleware(['auth'])->group(function () {
-    Route::group(['middleware' => ['auth', CheckRole::class . ':user']], function () {
-        Route::prefix('user')->group(function () {
-            Route::get(
-                '/dashboard',
-                [AdminController::class, 'view']
-            )->name('user');
+    Route::group(['middleware' => ['auth', checkUserStatus::class]], function () {
+        // admin
+        Route::group(['middleware' => ['auth', CheckRole::class . ':admin']], function () {
+            Route::prefix('admin')->group(function () {
+                Route::get(
+                    '/dashboard',
+                    [AdminController::class, 'view']
+                )->name('admin');
+
+                // user
+                Route::get(
+                    '/user-list',
+                    [UsersController::class, 'listView']
+                )->name('userList');
+
+                Route::get(
+                    '/user-data',
+                    [UsersController::class, 'userData']
+                )->name('userData');
+
+                Route::post(
+                    '/add-user',
+                    [UsersController::class, 'registerUser']
+                )->name('adduserdata');
+
+                Route::get(
+                    '/view-user/{user}',
+                    [UsersController::class, 'view']
+                )->name('viewuser');
+
+                Route::post(
+                    '/edit-user/{user}',
+                    [UsersController::class, 'editUser']
+                )->name('edituserdata');
+
+                Route::delete(
+                    '/delete-user/{user}',
+                    [UsersController::class, 'deleteUser']
+                )->name('deleteUser');
+            });
+
+            // command just use admin
+            Route::get('/clear', function () {
+                Artisan::call('cache:clear');
+                Artisan::call('config:cache');
+                Artisan::call('view:clear');
+                return "Cleared!";
+            });
+
+            Route::get('/migrate', function () {
+                Artisan::call('migrate');
+                return "Database Migrated!";
+            });
+
+            Route::get('/rollback', function () {
+                Artisan::call('migrate:rollback');
+                return "Database Rollback!";
+            });
+
+            Route::get('/fresh', function () {
+                Artisan::call('migrate:fresh');
+                return "Database fresh!";
+            });
+
+            Route::get('/seed', function () {
+                Artisan::call('db:seed');
+                return "Database Seeded!";
+            });
         });
-    });
 
-    Route::group(['middleware' => ['auth', CheckRole::class . ':admin']], function () {
-        Route::prefix('admin')->group(function () {
-            Route::get(
-                '/dashboard',
-                [AdminController::class, 'view']
-            )->name('admin');
+        // user
+        Route::group(['middleware' => ['auth', CheckRole::class . ':user']], function () {
+            Route::prefix('user')->group(function () {
+                Route::get(
+                    '/dashboard',
+                    [AdminController::class, 'view']
+                )->name('user');
 
-            // user
+                Route::get('/Status', function () {
+                    return "Sttatus Inactive";
+                });
+            });
+
+        });
+
+        // Persons
+        Route::prefix('persons')->group(function () {
             Route::get(
-                '/user-list',
-                [UsersController::class, 'listView']
-            )->name('userList');
+                '/person-list',
+                [PersonsController::class, 'listView']
+            )->name('personList');
 
             Route::get(
-                '/add-user',
-                [UsersController::class, 'addUserView']
-            )->name('adduser');
+                '/personData',
+                [PersonsController::class, 'PersonData']
+            )->name('personData');
+
+            Route::get(
+                '/add-person',
+                [PersonsController::class, 'addPersonView']
+            )->name('addPerson');
 
             Route::post(
-                '/add-user',
-                [UsersController::class, 'registerUser']
-            )->name('adduserdata');
+                '/add-person',
+                [PersonsController::class, 'registerPerson']
+            )->name('addPersonData');
 
             Route::get(
-                '/view-user/{user}',
-                [UsersController::class, 'view']
-            )->name('viewuser');
+                '/view-person/{id}',
+                [PersonsController::class, 'view']
+            )->name('viewPerson');
 
             Route::get(
-                '/edit-user/{user}',
-                [UsersController::class, 'viewEdit']
-            )->name('edituser');
+                '/edit-person/{person}',
+                [PersonsController::class, 'viewEdit']
+            )->name('editPerson');
+            Route::get(
+                '/get-pdf/{filename}',
+                [PersonsController::class, 'getPDF']
+            )->name('getPDF');
 
             Route::post(
-                '/edit-user/{user}',
-                [UsersController::class, 'editUser']
-            )->name('edituserdata');
+                '/edit-person/{id}',
+                [PersonsController::class, 'editPerson']
+            )->name('editPersonData');
 
             Route::delete(
-                '/delete-user/{user}',
-                [UsersController::class, 'deleteUser']
-            )->name('deleteUser');
+                '/delete-person/{id}',
+                [PersonsController::class, 'deletePerson']
+            )->name('deletePerson');
         });
-    });
 
-    // Persons
-    Route::prefix('persons')->group(function () {
-        Route::get(
-            '/person-list',
-            [PersonsController::class, 'listView']
-        )->name('personList');
+        // company
+        Route::prefix('companies')->group(function () {
+            Route::get(
+                '/company-list',
+                [CompaniesController::class, 'listView']
+            )->name('companyList');
 
-        Route::get(
-            '/add-person',
-            [PersonsController::class, 'addPersonView']
-        )->name('addPerson');
+            Route::get(
+                '/company-data',
+                [CompaniesController::class, 'companyData']
+            )->name('companyData');
 
-        Route::post(
-            '/add-person',
-            [PersonsController::class, 'registerPerson']
-        )->name('addPersonData');
+            Route::post(
+                '/add-company',
+                [CompaniesController::class, 'registerCompany']
+            )->name('addCompanyData');
 
-        Route::get(
-            '/view-person/{person}',
-            [PersonsController::class, 'view']
-        )->name('viewPerson');
+            Route::get(
+                '/view-company/{company}',
+                [CompaniesController::class, 'view']
+            )->name('viewCompany');
 
-        Route::get(
-            '/edit-person/{person}',
-            [PersonsController::class, 'viewEdit']
-        )->name('editPerson');
+            Route::post(
+                '/edit-company/{company}',
+                [CompaniesController::class, 'editCompany']
+            )->name('editCompanyData');
 
-        Route::post(
-            '/edit-person/{person}',
-            [PersonsController::class, 'editPerson']
-        )->name('editPersonData');
-
-        Route::delete(
-            '/delete-person/{person}',
-            [PersonsController::class, 'deletePerson']
-        )->name('deletePerson');
-    });
-
-    // company
-    Route::prefix('companies')->group(function () {
-        Route::get(
-            '/company-list',
-            [CompaniesController::class, 'listView']
-        )->name('companyList');
-
-        Route::get(
-            '/add-company',
-            [CompaniesController::class, 'addCompanyView']
-        )->name('addCompany');
-
-        Route::post(
-            '/add-company',
-            [CompaniesController::class, 'registerCompany']
-        )->name('addCompanyData');
-
-        Route::get(
-            '/view-company/{company}',
-            [CompaniesController::class, 'view']
-        )->name('viewCompany');
-
-        Route::get(
-            '/edit-company/{company}',
-            [CompaniesController::class, 'viewEdit']
-        )->name('editCompany');
-
-        Route::post(
-            '/edit-company/{company}',
-            [CompaniesController::class, 'editCompany']
-        )->name('editCompanyData');
-
-        Route::delete(
-            '/delete-company/{company}',
-            [CompaniesController::class, 'deleteCompany']
-        )->name('deleteCompany');
+            Route::delete(
+                '/delete-company/{company}',
+                [CompaniesController::class, 'deleteCompany']
+            )->name('deleteCompany');
+        });
     });
 });
